@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class person
 class Person
   # Constructor with name, age, and parent_permission as parameter.
   def initialize(age, name = 'unknown', parent_permission: true)
