@@ -3,25 +3,22 @@ class Person
   attr_accessor :id
 
   def initialize(age, name = 'unknown', parent_permission: true)
+    # Instance vars: @id, @name, and @age.
     @id = Random.rand(1..1000)
     @age = age
     @name = name
     @parent_permission = parent_permission
   end
 
-  def age_verify
-    of_age? || @parent_permission
+  def can_use_services?
+    return true if of_age? || @parent_permission
+
+    false
   end
 
   private
 
   def of_age?
     @age >= 18
-  end
-
-  def can_use_services?
-    return true if of_age? || @parent_permission
-
-    false
   end
 end
