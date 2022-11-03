@@ -2,9 +2,9 @@ class Person < Nameable
   attr_reader :name, :age
   attr_accessor :id
 
-  # rubocop:disable Lint/MissingSuper
   def initialize(age, name = 'unknown', parent_permission: true)
     # Instance vars: @id, @name, and @age.
+    super(name)
     @id = Random.rand(1..1000)
     @age = age
     @name = name
