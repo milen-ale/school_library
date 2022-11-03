@@ -6,7 +6,6 @@ AllCops:
     - "node_modules/**/*"
 
   DisplayCopNames: true
-
 Lint/MissingSuper:
   Exclude:
     - 'app/services/**/*'
