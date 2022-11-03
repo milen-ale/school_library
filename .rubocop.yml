@@ -7,6 +7,9 @@ AllCops:
 
   DisplayCopNames: true
 
+Lint/MissingSuper:
+  Exclude:
+    - 'app/services/**/*'
 Layout/LineLength:
   Max: 120
 Metrics/MethodLength:
