@@ -16,5 +16,5 @@ class Student < Person
     @classroom = classroom
     classroom.students.push(self) unless classroom.students.include?(self)
   end
- play_hooky
+  play_hooky
 end
