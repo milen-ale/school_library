@@ -1,6 +1,5 @@
 class Person < Nameable
-  attr_reader :name, :age
-  attr_accessor :id
+  attr_reader :name, :age, id, :rentals
 
   def initialize(age, name = 'unknown', parent_permission: true)
     # Instance vars: @id, @name, and @age.
@@ -9,6 +8,12 @@ class Person < Nameable
     @age = age
     @name = name
     @parent_permission = parent_permission
+    @rental = rental []
+  end
+
+  def add_rental(book)
+    @rentals.push(book)
+    book.person = self
   end
 
   def can_use_services?
