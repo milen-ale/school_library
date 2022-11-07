@@ -1,20 +1,8 @@
 require_relative './app'
 require_relative './modules/choose_operation'
+require_relative './modules/display'
 
 @app = App.new
-
-def list_options
-  puts '
-  Please choose one of the options: (1 - 7)
-    1. - List all books
-    2. - List all people
-    3. - Create a person
-    4. - Create a book
-    5. - Create a rental
-    6. - List all rentals for a given person id
-    7. Exit
-  '
-end
 
 def start_program
   loop do
