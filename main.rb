@@ -1,19 +1,8 @@
 require_relative './app'
+require_relative './modules/choose_operation'
+require_relative './modules/display'
 
 @app = App.new
-
-def list_options
-  puts '
-  Please choose one of the options: (1 - 7)
-    1. - List all books
-    2. - List all people
-    3. - Create a person
-    4. - Create a book
-    5. - Create a rental
-    6. - List all rentals for a given person id
-    7. Exit
-  '
-end
 
 def start_program
   loop do
@@ -27,23 +16,6 @@ def start_program
         choose_operation(choice)
       end
     end
-  end
-end
-
-def choose_operation(opt)
-  case opt
-  when 1
-    @app.list_books
-  when 2
-    @app.list_peoples
-  when 3
-    @app.create_person
-  when 4
-    @app.create_book
-  when 5
-    @app.create_rental
-  when 6
-    @app.list_rentals
   end
 end
 

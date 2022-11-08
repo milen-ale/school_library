@@ -9,11 +9,11 @@ class Person < Nameable
     @age = age
     @name = name
     @parent_permission = parent_permission
-    @rental = []
+    @rentals = []
   end
 
-  def add_rental(book)
-    @rentals.push(book)
+  def add_rental(rental)
+    @rentals.push(rental)
     book.person = self
   end
 
