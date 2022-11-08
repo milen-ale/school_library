@@ -10,6 +10,9 @@ def start_program
     choice = gets.chomp.to_i
     if choice.between?(1, 7)
       if choice == 7
+        @app.save_books
+        @app.save_person
+        @app.save_rentals
         puts 'Thank you for using this app!'
         exit
       else

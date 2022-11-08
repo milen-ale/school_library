@@ -4,6 +4,7 @@ require './book'
 require './rental'
 require './classroom'
 require './person'
+require 'json'
 
 class App
   attr_accessor :books, :students, :teachers, :rentals
@@ -102,5 +103,15 @@ class App
     @rentals.each_with_index do |rental, _i| \
       puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}" if rental.person.id == id
     end
+  end
+
+  def save_books
+    puts JSON.generate(list_books());
+  end
+
+  def save_rentals
+  end
+  
+  def save_person
   end
 end
