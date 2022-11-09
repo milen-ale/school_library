@@ -1,6 +1,6 @@
 require_relative './nameable'
 class Person < Nameable
-  attr_reader :name, :age, :id, :rentals
+  attr_reader :name, :age, :id, :rentals, :parent_permission
 
   def initialize(age, name, parent_permission)
     # Instance vars: @id, @name, and @age.
