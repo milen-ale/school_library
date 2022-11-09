@@ -21,6 +21,12 @@ class App
     end
   end
 
+  def list_rentals
+    @rentals.each_with_index do |rental, _i|
+      puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"
+    end
+  end
+
   def list_peoples
     @peoples.each_with_index do |p, i|
       puts "#{i}) [#{p.class}] Name: #{p.name}, ID: #{p.id}"
@@ -96,7 +102,7 @@ class App
     puts 'Rental added successfully'
   end
 
-  def list_rentals
+  def list_rentals_id
     list_peoples
     print 'Id of person: '
     id = gets.chomp.to_i
@@ -106,12 +112,14 @@ class App
   end
 
   def save_books
-    puts JSON.generate(list_books());
+    puts JSON.generate(list_books)
   end
 
   def save_rentals
+    puts JSON.generate(list_rentals)
   end
-  
+
   def save_person
+    puts JSON.generate(list_peoples)
   end
 end
