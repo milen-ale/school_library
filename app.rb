@@ -55,8 +55,8 @@ class App
     end
   end
 
-  def create_student_params(age, name, permission, classroom)
-    @peoples.push(Student.new(age, name, permission, classroom))
+  def create_student_params(id, age, name, permission, classroom)
+    @peoples.push(Student.new(age, name, permission, classroom, id))
   end
 
   def create_teacher
@@ -71,8 +71,8 @@ class App
     puts 'Teacher crated successfully!'
   end
 
-  def create_teacher_param(age, specialization, name)
-    @peoples.push(Teacher.new(age, specialization, name))
+  def create_teacher_param(id, age, specialization, name)
+    @peoples.push(Teacher.new(age, specialization, name, id))
   end
 
   def create_person
@@ -97,8 +97,8 @@ class App
     puts 'Book created successfully!'
   end
 
-  def create_book_param(title, author)
-    @books << (Book.new(title, author))
+  def create_book_param(id, title, author)
+    @books << (Book.new(title, author, id))
   end
 
   def create_rental
@@ -130,7 +130,7 @@ class App
   def save_books
     new_arr = []
     @books.each do |bk|
-      new_arr << { title: bk.title, author: bk.author }
+      new_arr << { id: bk.id, title: bk.title, author: bk.author }
     end
     File.write('files/books.json', JSON.generate(new_arr)) if new_arr.length.positive?
   end
@@ -138,7 +138,7 @@ class App
   def save_rentals
     new_arr = []
     @rentals.each do |rental|
-      new_arr << { date: rental.date, book: rental.book, author: rental.person }
+      new_arr << { date: rental.date, book_id: rental.book.id, person_id: rental.person.id }
     end
     File.write('files/rentals.json', JSON.generate(new_arr)) if new_arr.length.positive?
   end
@@ -155,5 +155,13 @@ class App
       end
     end
     File.write('files/persons.json', JSON.generate(new_arr)) if new_arr.length.positive?
+  end
+
+  def person(id)
+    @peoples.each { |per| return per if per.id == id }
+  end
+
+  def book(id)
+    @books.each { |bk| return bk if bk.id == id }
   end
 end

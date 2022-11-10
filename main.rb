@@ -7,8 +7,8 @@ require_relative './modules/load_data'
 
 def start_program
   load_books(@app)
-  load_rentals(@app)
   load_persons(@app)
+  load_rentals(@app)
   loop do
     list_options
     choice = gets.chomp.to_i
