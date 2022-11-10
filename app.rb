@@ -4,6 +4,7 @@ require './book'
 require './rental'
 require './classroom'
 require './person'
+require 'json'
 
 class App
   attr_accessor :books, :students, :teachers, :rentals
@@ -17,6 +18,12 @@ class App
   def list_books
     @books.each_with_index do |bk, i|
       puts "#{i}) Title: #{bk.title}, Author: #{bk.author}"
+    end
+  end
+
+  def list_rentals
+    @rentals.each_with_index do |rental, _i|
+      puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"
     end
   end
 
@@ -48,6 +55,10 @@ class App
     end
   end
 
+  def create_student_params(id, age, name, permission, classroom)
+    @peoples.push(Student.new(age, name, permission, classroom, id))
+  end
+
   def create_teacher
     puts 'Great! Lets create a teacher.'
     print 'Teacher name: '
@@ -58,6 +69,10 @@ class App
     specialization = gets.chomp
     @peoples.push(Teacher.new(age, specialization, name))
     puts 'Teacher crated successfully!'
+  end
+
+  def create_teacher_param(id, age, specialization, name)
+    @peoples.push(Teacher.new(age, specialization, name, id))
   end
 
   def create_person
@@ -82,6 +97,10 @@ class App
     puts 'Book created successfully!'
   end
 
+  def create_book_param(id, title, author)
+    @books << (Book.new(title, author, id))
+  end
+
   def create_rental
     puts 'Select a book from the following list by number'
     list_books
@@ -95,12 +114,54 @@ class App
     puts 'Rental added successfully'
   end
 
-  def list_rentals
+  def create_rental_param(date, book, person)
+    @rentals << Rental.new(date, book, person)
+  end
+
+  def list_rentals_id
     list_peoples
     print 'Id of person: '
     id = gets.chomp.to_i
     @rentals.each_with_index do |rental, _i| \
       puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}" if rental.person.id == id
     end
+  end
+
+  def save_books
+    new_arr = []
+    @books.each do |bk|
+      new_arr << { id: bk.id, title: bk.title, author: bk.author }
+    end
+    File.write('files/books.json', JSON.generate(new_arr)) if new_arr.length.positive?
+  end
+
+  def save_rentals
+    new_arr = []
+    @rentals.each do |rental|
+      new_arr << { date: rental.date, book_id: rental.book.id, person_id: rental.person.id }
+    end
+    File.write('files/rentals.json', JSON.generate(new_arr)) if new_arr.length.positive?
+  end
+
+  def save_person
+    new_arr = []
+    @peoples.each do |p|
+      case p.class.name
+      when 'Teacher'
+        new_arr << { id: p.id, name: p.name, age: p.age, person_type: p.class.name, specialization: p.specialization }
+      when 'Student'
+        new_arr << { id: p.id, name: p.name, classroom: p.classroom, age: p.age,
+                     parent_permission: p.parent_permission, person_type: p.class.name }
+      end
+    end
+    File.write('files/persons.json', JSON.generate(new_arr)) if new_arr.length.positive?
+  end
+
+  def person(id)
+    @peoples.each { |per| return per if per.id == id }
+  end
+
+  def book(id)
+    @books.each { |bk| return bk if bk.id == id }
   end
 end

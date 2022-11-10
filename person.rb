@@ -1,6 +1,6 @@
 require_relative './nameable'
 class Person < Nameable
-  attr_reader :name, :age, :id, :rentals
+  attr_accessor :name, :age, :id, :parent_permission, :rentals
 
   def initialize(age, name, parent_permission)
     # Instance vars: @id, @name, and @age.
@@ -14,7 +14,7 @@ class Person < Nameable
 
   def add_rental(rental)
     @rentals.push(rental)
-    book.person = self
+    # book.person = self
   end
 
   def can_use_services?
