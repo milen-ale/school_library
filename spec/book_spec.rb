@@ -1,7 +1,7 @@
 require './book'
 describe Book do
   before :each do
-   @book = Book.new('Game of Thrones', 'George Martin')
+    @book = Book.new('Game of Thrones', 'George Martin')
   end
   context 'When testing the Book class' do
     it 'should print the book title' do
@@ -24,5 +24,3 @@ describe Book do
     expect(@book.author).to eq 'paul mark'
   end
 end
-
-
