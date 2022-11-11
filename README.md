@@ -2,10 +2,6 @@
  a tool to record what books are in the library and who borrows them. The app that you will create will allow you to:  Add new students or teachers. Add new books. Save records of who borrowed a given book and when.
 
 
-# school-library
-
-This  repository is used to learn, practice and master the ruby language 
-
 ## Built With
 
 - Ruby
@@ -43,7 +39,7 @@ run the program functions
 
 - GitHub: [@milen-ale](https://github.com/milen-ale)
 - Twitter: [@milenalebel2](https://twitter.com/milenalebel2)
-- LinkedIn: [milen-alebe](https://linkedin.com/in/milen-alebe)
+- LinkedIn: [milen-alebel](https://linkedin.com/in/milen-alebel)
 
 
 
